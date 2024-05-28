@@ -4,6 +4,7 @@
   "author": "",
   "description": "",
   "keywords": [],
+  "type":"commonjs",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
