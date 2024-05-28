@@ -1,10 +1,11 @@
-const express = require("express");
-const http = require("http");
-const nunjucks = require("nunjucks");
-const cors = require('cors')
-const { MongoClient, ObjectId } = require('mongodb')
-const WebSocket = require("ws");
-require('dotenv').config();
+import { createRequire } from 'module';
+const express = createRequire("express");
+const http = createRequire("http");
+const nunjucks = createRequire("nunjucks");
+const cors = createRequire('cors')
+const { MongoClient, ObjectId } = createRequire('mongodb')
+const WebSocket = createRequire("ws");
+createRequire('dotenv').config();
 
 const app = express();
 app.use(express.static("public"));
