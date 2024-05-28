@@ -17,7 +17,7 @@ const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
 
 
-const clientPromise = new MongoClient(process.env.DB_URI, {
+const clientPromise = new MongoClient('mongodb+srv://user:wsSdw2%25%40sdfas@cluster0.djhvcyg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
   useUnifiedTopology: true
 })
 
