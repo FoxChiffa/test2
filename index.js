@@ -5,6 +5,7 @@ import  cors from 'cors'
 import  { MongoClient, ObjectId }  from  'mongodb'
 import  WebSocket from "ws";
 /* createRequire('dotenv').config(); */
+import { WebSocketServer } from "ws";
 
 const app = express();
 app.use(express.static("public"));
@@ -13,7 +14,7 @@ app.use(express.json());
 app.use(cors());
 
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
+const wss = new WebSocketServer({ server });
 
 
 const clientPromise = new MongoClient(process.env.DB_URI, {
