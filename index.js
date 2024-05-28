@@ -1,10 +1,10 @@
-import { createRequire } from 'module';
-const express = createRequire("express");
-const http = createRequire("http");
-const nunjucks = createRequire("nunjucks");
-const cors = createRequire('cors')
-const { MongoClient, ObjectId } = createRequire('mongodb')
-const WebSocket = createRequire("ws");
+
+import  express from "express";
+import  http from "http";
+import  nunjucks from  "nunjucks";
+import  cors from 'cors'
+import  { MongoClient, ObjectId }  from  'mongodb'
+import  WebSocket from "ws";
 createRequire('dotenv').config();
 
 const app = express();
