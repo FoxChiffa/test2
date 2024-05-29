@@ -1,9 +1,10 @@
-import express from "express";
-import http from "http";
-import nunjucks from "nunjucks";
-import cors from 'cors';
-import { MongoClient, ObjectId } from 'mongodb';
-import WebSocket from "ws";
+const express = require("express");
+const http = require("http");
+const nunjucks = require("nunjucks");
+const cors = require('cors')
+const { MongoClient, ObjectId } = require('mongodb')
+const WebSocket = require("ws");
+require('dotenv').config();
 
 const app = express();
 app.use(express.static("public"));
@@ -15,35 +16,9 @@ const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
 
-const clientPromise = new MongoClient("mongodb+srv://user:wsSdw2%25%40sdfas@cluster0.djhvcyg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-
-app.get("/api/timers", async (req, res) => {
-  const { isActive } = req.query;
-
-  if (isActive === undefined) {
-    return res.status(400).send("isActive query parameter is required");
-  }
-
-  const isActiveBool = isActive === "true";
-
-  const filteredTimers = await req.db.collection('timer').find({isActive : isActiveBool }).toArray();
-
-  if (filteredTimers.length === 0) {
-    return res.status(204).send();
-  }
-
-  if (isActiveBool) {
-    filteredTimers.forEach((timer) => {
-      timer.progress = Date.now() - new Date(timer.start);
-    });
-  }
-
-  filteredTimers.forEach((timer) => {
-    timer.id = timer._id.toString();
-  })
-
-  res.json(filteredTimers);
-});
+const clientPromise = new MongoClient(process.env.DB_URI, {
+  useUnifiedTopology: true
+})
 
 async function getTimer(db, active = false) {
   let data = {
@@ -138,7 +113,6 @@ nunjucks.configure("views", {
 app.get("/", (req, res) => {
   res.render("index");
 });
-
 
 const port = process.env.PORT || 4000;
 
