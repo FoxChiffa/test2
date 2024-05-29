@@ -41,7 +41,7 @@
       desc: "",
       activeTimers: [],
       oldTimers: [],
-      client: new WebSocket(`ws://test2-1-mq6z.onrender.com/`)
+      client: new WebSocket(`wss://test2-1-mq6z.onrender.com/`)
     },
     methods: {
       createTimer() {
